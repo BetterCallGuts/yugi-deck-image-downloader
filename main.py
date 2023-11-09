@@ -49,7 +49,7 @@ def get_card_name(card_id):
 
 def main(filename):
   a =1
-  with open(f"data_ydk/{filename}", "r") as f:
+  with open(f"{filename}", "r") as f:
     for i in f.readlines():
       if "main" in i  or "side" in i or "extra" in i:
         continue
@@ -62,6 +62,38 @@ def main(filename):
       print("done", a)
       a +=1
 
-for i in os.listdir("data_ydk"):
-  if i.split(".")[-1] == "ydk":
-    main(i)
+# for i in os.listdir("data_ydk"):
+
+    
+
+
+import tkinter as tk
+from tkinter import filedialog
+
+def browse_file():
+    file_path = filedialog.askopenfilename()
+    if file_path:
+        entry_file_path.delete(0, tk.END)
+        entry_file_path.insert(0, file_path)
+
+def upload_file():
+    file_path = entry_file_path.get()
+    if file_path:
+        # print("Uploaded file:", file_path)
+        if file_path.split(".")[-1] == "ydk":
+            main(file_path)
+    
+
+root = tk.Tk()
+root.title("File Upload GUI")
+
+entry_file_path = tk.Entry(root, width=40)
+entry_file_path.grid(row=0, column=0, padx=10, pady=10)
+
+button_browse = tk.Button(root, text="Browse", command=browse_file)
+button_browse.grid(row=0, column=1, padx=10, pady=10)
+
+button_upload = tk.Button(root, text="Upload", command=upload_file)
+button_upload.grid(row=1, column=0, columnspan=2, padx=10, pady=10)
+
+root.mainloop()
