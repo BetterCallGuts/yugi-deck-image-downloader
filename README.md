@@ -6,6 +6,7 @@ Install the requirement modules
 pip install requests
 pip install bs4
 pip install lxml
+pip install tk
 ```
 or just type 
 ```
