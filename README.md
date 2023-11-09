@@ -11,8 +11,8 @@ or just type
 ```
 pip install -r requirements.txt
 ```
-move any deck with the ```.ydk``` extention on the ```project_dir/data_ydk/``` directory.
-Thats it enjoy now the project will download all the card image and name them by card name in Arabic 
+move any deck with the ```.ydk``` extension on the ```project_dir/data_ydk/``` directory.
+Thats it enjoy now the project will download all the card image and name them by card name in Arabic if you want it in english you can just change the Arabic var in line 5 to False. 
 enjoy!
 ___
 |       |  |  |

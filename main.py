@@ -2,8 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 import os
 
+Arabic = True
 
 
+
+
+# global name
 names_agin = []
 def download_image(card_id, card_name=None):
   card_name+= "1"
@@ -27,8 +31,20 @@ def get_card_name(card_id):
   
   re = requests.get(f"https://www.arab-duelists.com/?p=card&id={card_id}")
   soup = BeautifulSoup(re.content, "lxml")
-
-  name = soup.find("h1", {"style" : "font-size:20px;margin:0"})
+  name = None
+  if Arabic:
+    name = soup.find("h1", {"style" : "font-size:20px;margin:0"})
+  else:
+    td_tags = soup.find_all("td")
+    for i in td_tags:
+      b = i.find("b")
+      if b is not None:
+        if "ا"  in str(b):
+          pass
+        else:
+          name = b
+          break
+        # here
   return name
 
 def main(filename):
